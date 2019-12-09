@@ -11,6 +11,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
+    hot: true,
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -19,7 +20,7 @@ module.exports = {
     }),
   ],
   output: {
-    filename: '[name].[contenthash].js',
+    filename: '[name].[hash].js',
     path: path.resolve(__dirname, 'dist'),
   },
   optimization: {
@@ -35,22 +36,22 @@ module.exports = {
       },
     },
   },
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.s[ac]ss$/i,
-  //       use: [
-  //         'style-loader',
-  //         'css-loader',
-  //         'sass-loader',
-  //       ],
-  //     },
-  //     {
-  //       test: /\.(png|svg|jpg|gif)$/,
-  //       use: [
-  //         'file-loader',
-  //       ],
-  //     },
-  //   ],
-  // },
+  module: {
+    rules: [
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ],
+      },
+    ],
+  },
 };
